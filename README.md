@@ -5,7 +5,7 @@
 </p>
 <h1 align="center">Xenia Canary - Xbox 360 Emulator</h1>
 
-[![Discord Server](https://img.shields.io/discord/533275703882547200?logo=discord)](https://discord.gg/jydhhRQ)
+[![Discord Server](https://discordapp.com/api/guilds/533275703882547200/widget.png)](https://discord.gg/jydhhRQ)
 [![Actions Status](https://github.com/xenia-canary/xenia-canary/workflows/CI/badge.svg)](https://github.com/xenia-canary/xenia-canary/actions)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/5fs0ia3031l9rbpo/branch/canary?svg=true)](https://ci.appveyor.com/project/chris-hawley/xenia-canary/branch/canary)
 [![Azure Build Status](https://dev.azure.com/xenia-canary/xenia-canary/_apis/build/status/xenia-canary.xenia-canary?branchName=canary)](https://dev.azure.com/xenia-canary/xenia-canary/_build/latest?definitionId=1&branchName=canary)
