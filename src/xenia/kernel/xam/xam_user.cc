@@ -923,6 +923,12 @@ dword_result_t XamProfileCreate(dword_t flags, lpdword_t device_id,
 }
 DECLARE_XAM_EXPORT1(XamProfileCreate, kUserProfiles, kStub);
 
+dword_result_t XamUserLogon(lpqword_t users, dword_t flags,
+    pointer_t<XAM_OVERLAPPED> ptr_overlapped) {
+  return X_E_SUCCESS;
+}
+DECLARE_XAM_EXPORT1(XamUserLogon, kUserProfiles, kStub)
+
 #pragma pack(push, 1)
 struct X_USER_INFO {
   xe::be<uint64_t> xuid;
@@ -950,7 +956,6 @@ dword_result_t XamPartyGetUserListInternal(
 }
 DECLARE_XAM_EXPORT1(XamPartyGetUserListInternal, kUserProfiles, kStub);
 
-BUILD_USER_PROFILE_EXPORT_STUB(XamUserLogon)
 BUILD_USER_PROFILE_EXPORT_STUB(XamProfileClose)
 BUILD_USER_PROFILE_EXPORT_STUB(XamProfileOpen)
 BUILD_USER_PROFILE_EXPORT_STUB(XamUserGetMembershipTierFromXUID)

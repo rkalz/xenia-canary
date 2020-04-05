@@ -493,12 +493,47 @@ dword_result_t XamShowCreateProfileUI(dword_t user_index) {
 }
 DECLARE_XAM_EXPORT1(XamShowCreateProfileUI, kUI, kImplemented);
 
-BUILD_UI_EXPORT_STUB(XamShowSigninUIp)
+// https://github.com/GlitchyScripts/xlivelessness/blob/master/xlivelessness/xlive/xshow.cpp#L236
+dword_result_t XamShowSigninUIp(dword_t user_index, dword_t num_users, dword_t flags) {
+    // Select a user to sign in
+    return X_ERROR_SUCCESS;
+}
+DECLARE_XAM_EXPORT1(XamShowSigninUIp, kUI, kStub);
+
+dword_result_t XamShowLiveUpsellUI() { 
+    // Triggered by the "Join Xbox Live" button on Dashboard 6717
+    // Probably talked about Live features before prompting you to create a Live account
+    if (cvars::headless) {
+        assert_always();
+        exit(1);
+        return X_ERROR_FUNCTION_FAILED;
+    }
+
+  auto display_window = kernel_state()->emulator()->display_window();
+  xe::threading::Fence fence;
+  display_window->loop()->PostSynchronous([&]() {
+    xe::ui::ImGuiDialog::ShowMessageBox(
+        display_window, "XamShowLiveUpsellUI",
+        "XamShowLiveUpsellUI")
+        ->Then(&fence);
+  });
+  ++xam_dialogs_shown_;
+  fence.Wait();
+  --xam_dialogs_shown_;
+
+  return X_ERROR_SUCCESS;
+}
+DECLARE_XAM_EXPORT1(XamShowLiveUpsellUI, kUI, kImplemented);
+
+dword_result_t XamShowLiveSignupUI(dword_t user_index, dword_t recovering_account) {
+    // Creating a new Xbox Live account (or recovering an existing one)
+    return X_ERROR_SUCCESS;
+}
+DECLARE_XAM_EXPORT1(XamShowLiveSignupUI, kUI, kStub);
+
 BUILD_UI_EXPORT_STUB(XamShowGamerCardUIForXUID)
 BUILD_UI_EXPORT_STUB(XamShowAchievementsUI)
 BUILD_UI_EXPORT_STUB(XamShowMessageBoxUIEx)
-BUILD_UI_EXPORT_STUB(XamShowLiveSignupUI)
-BUILD_UI_EXPORT_STUB(XamShowLiveUpsellUI)
 BUILD_UI_EXPORT_STUB(XamIsSysUiInvokedByTitle)
 BUILD_UI_EXPORT_STUB(XamShowSigninUIEx)
 BUILD_UI_EXPORT_STUB(XamShowPersonalizationUI)

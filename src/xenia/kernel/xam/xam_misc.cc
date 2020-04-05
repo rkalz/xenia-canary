@@ -62,12 +62,16 @@ dword_result_t XamIsSystemExperienceTitleId(dword_t title_id) {
 }
 DECLARE_XAM_EXPORT1(XamIsSystemExperienceTitleId, kNone, kImplemented);
 
+void XamSetDashContext(dword_t context) { 
+    return; 
+}
+DECLARE_XAM_EXPORT1(XamSetDashContext, kNone, kStub);
+
 BUILD_MISC_EXPORT_STUB(XamAppUnloadStack)
 BUILD_MISC_EXPORT_STUB(XamTaskModify)
 BUILD_MISC_EXPORT_STUB(XamTaskGetAttributes)
 BUILD_MISC_EXPORT_STUB(XamTaskGetCurrentTask)
 BUILD_MISC_EXPORT_STUB(XamTaskCloseHandle)
-BUILD_MISC_EXPORT_STUB(XamSetDashContext)
 BUILD_MISC_EXPORT_STUB(XamLoaderLaunchTitleEx)
 BUILD_MISC_EXPORT_STUB(XamLoaderGetDvdTrayState)
 BUILD_MISC_EXPORT_STUB(XamInstrumentationLogEventEx)
