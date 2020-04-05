@@ -35,6 +35,10 @@
 #include <sys/socket.h>
 #endif
 
+#define BUILD_NET_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kNetworking, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -1019,6 +1023,59 @@ dword_result_t NetDll___WSAFDIsSet(dword_t socket_handle,
   return 0;
 }
 DECLARE_XAM_EXPORT1(NetDll___WSAFDIsSet, kNetworking, kImplemented);
+
+BUILD_NET_EXPORT_STUB(NetDll_XmlDownloadStop)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpSetOption)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpQueryOption)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpWriteData)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpReadData)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpQueryHeaders)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpReceiveResponse)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpSendRequest)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpOpenRequestUsingMemory)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpOpenRequest)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpSetStatusCallback)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpCloseHandle)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpShutdown)
+BUILD_NET_EXPORT_STUB(NetDll_UpnpCloseHandle)
+BUILD_NET_EXPORT_STUB(NetDll_UpnpDoWork)
+BUILD_NET_EXPORT_STUB(NetDll_UpnpDescribeGetResults) 
+BUILD_NET_EXPORT_STUB(NetDll_UpnpDescribeCreate)
+BUILD_NET_EXPORT_STUB(NetDll_UpnpSearchGetDevices) 
+BUILD_NET_EXPORT_STUB(NetDll_UpnpSearchCreate)
+BUILD_NET_EXPORT_STUB(NetDll_UpnpCleanup)
+BUILD_NET_EXPORT_STUB(NetDll_UpnpStartup) 
+BUILD_NET_EXPORT_STUB(NetDll_XnpNoteSystemTime) 
+BUILD_NET_EXPORT_STUB(NetDll_XnpLogonGetStatus)
+BUILD_NET_EXPORT_STUB(NetDll_XnpEthernetInterceptXmit)
+BUILD_NET_EXPORT_STUB(NetDll_XnpEthernetInterceptSetCallbacks)
+BUILD_NET_EXPORT_STUB(NetDll_XnpGetConfigStatus)
+BUILD_NET_EXPORT_STUB(NetDll_XnpConfig)
+BUILD_NET_EXPORT_STUB(NetDll_XnpSaveConfigParams)
+BUILD_NET_EXPORT_STUB(NetDll_XnpLoadConfigParams)
+BUILD_NET_EXPORT_STUB(NetDll_XmlDownloadContinue)
+BUILD_NET_EXPORT_STUB(NetDll_XmlDownloadStart)
+BUILD_NET_EXPORT_STUB(NetDll_XNetRegisterKey)
+BUILD_NET_EXPORT_STUB(NetDll_XNetUnregisterKey)
+BUILD_NET_EXPORT_STUB(NetDll_XNetSetOpt)
+BUILD_NET_EXPORT_STUB(XNetLogonGetMachineID)
+BUILD_NET_EXPORT_STUB(XNetLogonGetTitleID)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadGetItems)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadItemGetStatus)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadItemMakeFirst)
+BUILD_NET_EXPORT_STUB(XNetLogonClearTicketCaches)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadItemAdd)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadItemToContentData)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadIsEnabled)
+BUILD_NET_EXPORT_STUB(XNetLogonGetExtendedStatus)
+BUILD_NET_EXPORT_STUB(XNetLogonGetDnsString)
+BUILD_NET_EXPORT_STUB(XamBackgroundDownloadSetMode)
+BUILD_NET_EXPORT_STUB(NetDll_WSASend)
+BUILD_NET_EXPORT_STUB(NetDll_WSARecv)
+BUILD_NET_EXPORT_STUB(NetDll_WSACancelOverlappedIO)
+BUILD_NET_EXPORT_STUB(NetDll_WSAGetOverlappedResult)
+BUILD_NET_EXPORT_STUB(NetDll_getpeername)
+BUILD_NET_EXPORT_STUB(NetDll_XHttpDoWork)
 
 void RegisterNetExports(xe::cpu::ExportResolver* export_resolver,
                         KernelState* kernel_state) {

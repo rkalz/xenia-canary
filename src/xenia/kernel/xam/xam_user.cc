@@ -19,6 +19,12 @@
 #include "xenia/kernel/xthread.h"
 #include "xenia/xbox.h"
 
+#define BUILD_USER_PROFILE_EXPORT_STUB(functionName) \
+    dword_result_t functionName() {                  \
+        return X_ERROR_FUNCTION_FAILED;              \
+    }                                                \
+    DECLARE_XAM_EXPORT1(functionName, kUserProfiles, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -943,6 +949,27 @@ dword_result_t XamPartyGetUserListInternal(
   return X_ERROR_SUCCESS;
 }
 DECLARE_XAM_EXPORT1(XamPartyGetUserListInternal, kUserProfiles, kStub);
+
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserLogon)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileClose)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileOpen)
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserGetMembershipTierFromXUID)
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserGetOnlineCountryFromXUID)
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserGetUserFlags)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileSaveAccountInfo)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileLoadAccountInfo)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileFindAccount)
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserGetCachedUserFlags)
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserGetMembershipTier)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileLoadWindowsLiveCredentials)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileIsSaveWindowsLiveCredsEnabled)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileSaveWindowsLiveCredentials)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileSetSaveWindowsLiveCredsEnabled)
+BUILD_USER_PROFILE_EXPORT_STUB(XamSetUserShowMessengerFriends)
+BUILD_USER_PROFILE_EXPORT_STUB(XamUserFlushLogonQueue)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileDelete)
+BUILD_USER_PROFILE_EXPORT_STUB(XamProfileGetCreationStatus)
+BUILD_USER_PROFILE_EXPORT_STUB(XamGetCachedGamerTagW)
 
 }  // namespace xdbf
 }  // namespace xam

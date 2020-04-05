@@ -14,6 +14,10 @@
 #include "xenia/kernel/xnotifylistener.h"
 #include "xenia/xbox.h"
 
+#define BUILD_NOTIFY_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kNone, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -100,6 +104,8 @@ DECLARE_XAM_EXPORT1(XNotifyPositionUI, kNone, kStub);
 
 void RegisterNotifyExports(xe::cpu::ExportResolver* export_resolver,
                            KernelState* kernel_state) {}
+
+BUILD_NOTIFY_EXPORT_STUB(XNotifyBroadcast)
 
 }  // namespace xam
 }  // namespace kernel

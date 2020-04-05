@@ -16,6 +16,10 @@
 #include "xenia/kernel/xam/xam_private.h"
 #include "xenia/xbox.h"
 
+#define BUILD_VOICE_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kInput, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -200,6 +204,8 @@ X_HRESULT_result_t XamUserGetDeviceContext(dword_t user_index, dword_t unk,
   return input_system->GetState(actual_user_index, &state);
 }
 DECLARE_XAM_EXPORT1(XamUserGetDeviceContext, kInput, kStub);
+
+BUILD_VOICE_EXPORT_STUB(XamInputSendStayAliveRequest)
 
 void RegisterInputExports(xe::cpu::ExportResolver* export_resolver,
                           KernelState* kernel_state) {}

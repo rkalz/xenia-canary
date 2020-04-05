@@ -24,6 +24,10 @@
 
 DEFINE_int32(avpack, 8, "Video modes", "Video");
 
+#define BUILD_INFO_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kNone, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -447,6 +451,13 @@ void XamLoaderGetMediaInfo(lpdword_t unk1, dword_t unk2) {
 }
 
 DECLARE_XAM_EXPORT1(XamLoaderGetMediaInfo, kUserProfiles, kStub);
+
+BUILD_INFO_EXPORT_STUB(XamGetLanguage)
+BUILD_INFO_EXPORT_STUB(XGetAudioFlags)
+BUILD_INFO_EXPORT_STUB(XamGetCachedTitleName)
+BUILD_INFO_EXPORT_STUB(XamGetDefaultSystemImage)
+BUILD_INFO_EXPORT_STUB(XamGetCurrentTitleId)
+
 
 void RegisterInfoExports(xe::cpu::ExportResolver* export_resolver,
                          KernelState* kernel_state) {}

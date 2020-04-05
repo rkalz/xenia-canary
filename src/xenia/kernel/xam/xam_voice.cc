@@ -13,6 +13,10 @@
 #include "xenia/kernel/xam/xam_private.h"
 #include "xenia/xbox.h"
 
+#define BUILD_VOICE_EXPORT_STUB(functionName)                          \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kNone, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -37,6 +41,8 @@ DECLARE_XAM_EXPORT1(XamVoiceClose, kNone, kStub);
 
 dword_result_t XamVoiceHeadsetPresent(lpunknown_t voice_ptr) { return 0; }
 DECLARE_XAM_EXPORT1(XamVoiceHeadsetPresent, kNone, kStub);
+
+BUILD_VOICE_EXPORT_STUB(XamVoiceSubmitPacket)
 
 void RegisterVoiceExports(xe::cpu::ExportResolver* export_resolver,
                           KernelState* kernel_state) {}

@@ -19,6 +19,10 @@
 #include "xenia/ui/window.h"
 #include "xenia/xbox.h"
 
+#define BUILD_UI_EXPORT_STUB(functionName)                \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kUI, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -488,6 +492,29 @@ dword_result_t XamShowCreateProfileUI(dword_t user_index) {
   return X_ERROR_SUCCESS;
 }
 DECLARE_XAM_EXPORT1(XamShowCreateProfileUI, kUI, kImplemented);
+
+BUILD_UI_EXPORT_STUB(XamShowSigninUIp)
+BUILD_UI_EXPORT_STUB(XamShowGamerCardUIForXUID)
+BUILD_UI_EXPORT_STUB(XamShowAchievementsUI)
+BUILD_UI_EXPORT_STUB(XamShowMessageBoxUIEx)
+BUILD_UI_EXPORT_STUB(XamShowLiveSignupUI)
+BUILD_UI_EXPORT_STUB(XamShowLiveUpsellUI)
+BUILD_UI_EXPORT_STUB(XamIsSysUiInvokedByTitle)
+BUILD_UI_EXPORT_STUB(XamShowSigninUIEx)
+BUILD_UI_EXPORT_STUB(XamShowPersonalizationUI)
+BUILD_UI_EXPORT_STUB(XamShowMarketplaceUIEx)
+BUILD_UI_EXPORT_STUB(XamShowPasscodeVerifyUI)
+BUILD_UI_EXPORT_STUB(XamShowGraduateUserUI)
+BUILD_UI_EXPORT_STUB(XamShowMessengerUI)
+BUILD_UI_EXPORT_STUB(XamShowAchievementDetailsUI)
+BUILD_UI_EXPORT_STUB(XamShowCustomMessageComposeUI)
+BUILD_UI_EXPORT_STUB(XamShowJoinSessionInProgressUI)
+BUILD_UI_EXPORT_STUB(XamShowGamesUI)
+BUILD_UI_EXPORT_STUB(XamShowGamerCardUI)
+BUILD_UI_EXPORT_STUB(XamShowVoiceSettingsUI)
+BUILD_UI_EXPORT_STUB(XamShowVideoChatInviteUI)
+BUILD_UI_EXPORT_STUB(XNotifyQueueUI)
+BUILD_UI_EXPORT_STUB(XamShowLiveUpsellUIEx)
 
 void RegisterUIExports(xe::cpu::ExportResolver* export_resolver,
                        KernelState* kernel_state) {}

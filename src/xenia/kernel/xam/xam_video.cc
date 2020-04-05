@@ -14,6 +14,10 @@
 #include "xenia/kernel/xboxkrnl/xboxkrnl_video.h"
 #include "xenia/xbox.h"
 
+#define BUILD_VIDEO_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kVideo, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -26,6 +30,8 @@ DECLARE_XAM_EXPORT1(XGetVideoMode, kVideo, ExportTag::kSketchy);
 
 dword_result_t XGetVideoCapabilities() { return 0; }
 DECLARE_XAM_EXPORT1(XGetVideoCapabilities, kVideo, kStub);
+
+BUILD_VIDEO_EXPORT_STUB(XGetVideoStandard)
 
 void RegisterVideoExports(xe::cpu::ExportResolver* export_resolver,
                           KernelState* kernel_state) {}

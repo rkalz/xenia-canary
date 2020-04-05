@@ -31,6 +31,10 @@ DEFINE_int32(license_mask, 0,
              "-1 or 0xFFFFFFFF - enable all possible licenses.",
              "Content");
 
+#define BUILD_CONTENT_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kContent, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -642,6 +646,22 @@ dword_result_t XamSwapDisc(dword_t disc_number,
   return 0;
 }
 DECLARE_XAM_EXPORT1(XamSwapDisc, kContent, kSketchy);
+
+BUILD_CONTENT_EXPORT_STUB(XamContentResolveInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentLaunchImageInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentDeleteInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentSetThumbnailInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentGetDefaultDevice)
+BUILD_CONTENT_EXPORT_STUB(XamContentSetMediaMetaDataInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentGetLocalizedString)
+BUILD_CONTENT_EXPORT_STUB(XamContentGetMetaDataInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentGetAttributesInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentAggregateCreateEnumerator)
+BUILD_CONTENT_EXPORT_STUB(XamContentCopyInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentMoveInternal)
+BUILD_CONTENT_EXPORT_STUB(XamContentOpenFileInternal)
+BUILD_CONTENT_EXPORT_STUB(XamSetDashContextEx)
+BUILD_CONTENT_EXPORT_STUB(XamContentCreateEnumeratorInternal)
 
 void RegisterContentExports(xe::cpu::ExportResolver* export_resolver,
                             KernelState* kernel_state) {}

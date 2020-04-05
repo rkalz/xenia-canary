@@ -15,6 +15,10 @@
 #include "xenia/kernel/xthread.h"
 #include "xenia/xbox.h"
 
+#define BUILD_MSG_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kNone, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -92,6 +96,8 @@ dword_result_t XMsgCancelIORequest(pointer_t<XAM_OVERLAPPED> overlapped_ptr,
   return 0;
 }
 DECLARE_XAM_EXPORT1(XMsgCancelIORequest, kNone, kImplemented);
+
+BUILD_MSG_EXPORT_STUB(XMsgCompleteIORequest)
 
 void RegisterMsgExports(xe::cpu::ExportResolver* export_resolver,
                         KernelState* kernel_state) {}

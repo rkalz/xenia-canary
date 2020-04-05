@@ -7,6 +7,10 @@
 
 DECLARE_bool(xconfig_initial_setup);
 
+#define BUILD_MISC_EXPORT_STUB(functionName)                       \
+  dword_result_t functionName() { return X_ERROR_FUNCTION_FAILED; } \
+  DECLARE_XAM_EXPORT1(functionName, kMisc, kStub);
+
 namespace xe {
 namespace kernel {
 namespace xam {
@@ -57,6 +61,41 @@ dword_result_t XamIsSystemExperienceTitleId(dword_t title_id) {
   return title_id == 0x584E07D2 || title_id == 0x584E07D1;  // XN-2002 / XN-2001
 }
 DECLARE_XAM_EXPORT1(XamIsSystemExperienceTitleId, kNone, kImplemented);
+
+BUILD_MISC_EXPORT_STUB(XamAppUnloadStack)
+BUILD_MISC_EXPORT_STUB(XamTaskModify)
+BUILD_MISC_EXPORT_STUB(XamTaskGetAttributes)
+BUILD_MISC_EXPORT_STUB(XamTaskGetCurrentTask)
+BUILD_MISC_EXPORT_STUB(XamTaskCloseHandle)
+BUILD_MISC_EXPORT_STUB(XamSetDashContext)
+BUILD_MISC_EXPORT_STUB(XamLoaderLaunchTitleEx)
+BUILD_MISC_EXPORT_STUB(XamLoaderGetDvdTrayState)
+BUILD_MISC_EXPORT_STUB(XamInstrumentationLogEventEx)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerGetData)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerResume)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerForceNotification)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerSetData)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerSuspend)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerIsRunning)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerIsEnabled)
+BUILD_MISC_EXPORT_STUB(XamMuteSound)
+BUILD_MISC_EXPORT_STUB(XamPlayTimerGetNextResetDate)
+BUILD_MISC_EXPORT_STUB(XamGetOverlappedResult)
+BUILD_MISC_EXPORT_STUB(XamUniSortCmpString)
+BUILD_MISC_EXPORT_STUB(XamFormatMessage)
+BUILD_MISC_EXPORT_STUB(XamPrepareGamerTiles)
+BUILD_MISC_EXPORT_STUB(XamLoaderGetPriorTitleId)
+BUILD_MISC_EXPORT_STUB(XamGetWCNConfigFile)
+BUILD_MISC_EXPORT_STUB(XamUnloadSysApp)
+BUILD_MISC_EXPORT_STUB(XamCacheReset)
+BUILD_MISC_EXPORT_STUB(XamGetDvrStorage)
+BUILD_MISC_EXPORT_STUB(XamCacheCloseFile)
+BUILD_MISC_EXPORT_STUB(XamCacheOpenFile)
+BUILD_MISC_EXPORT_STUB(XamIptvGetServiceName)
+BUILD_MISC_EXPORT_STUB(XamIptvUninstall)
+BUILD_MISC_EXPORT_STUB(XamSetDvrStorage)
+BUILD_MISC_EXPORT_STUB(XamSetPowerMode)
+BUILD_MISC_EXPORT_STUB(XamLoadSysApp)
 
 void RegisterMiscExports(xe::cpu::ExportResolver* export_resolver,
                            KernelState* kernel_state) {}
